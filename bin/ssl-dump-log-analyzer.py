@@ -1,13 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""This module's docstring summary line.
-This is a multi-line docstring. Paragraphs are separated with blank lines.
-Lines conform to 79-column limit.
-Module and packages names should be short, lower_case_with_underscores.
-Notice that this in not PEP8-cheatsheet.py
-Seriously, use flake8. Atom.io with https://atom.io/packages/linter-flake8
-is awesome!
-See http://www.python.org/dev/peps/pep-0008/ for more PEP-8 details
+"""SSL Dump iRule log cleanup
+This script takes the output of the SSL Dump iRule and formats it into 3 different pipe "|"
+seperated files. These files include:
+* Combined File: The raw data from the log reformated for easier readability and machine processing
+* Failure File: SSL Connections that would have failed given the rules set forth in the irule.
+  User Agent strings are included in all failures within the failure file for added research
+* Cipher File: All client ciphers as presented during the intial handshale. The OpenSSL hex codes
+  are cross referenced with the F5 representation of the cipher. This uses the included openssl-ciphers.tsv
+  file and can be regenerated with the included shell script.
+* Handshake File: All successful client handshakes.
+
+To execute this script:
+./$0 --help: this message
+./$0 --version: version info
+
+./$0 <infile> -of <failure file> -oc <cipher file> -oh <handshake file> -o <combined output file>:
+This will process <infile> and create the files <failure file> <cipher file> <handshake file> <combined output file>
+
 """
 import argparse
 import csv
@@ -136,7 +146,7 @@ def main(arguments):
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    parser.add_argument('infile', help="Input file", default="ssl-orig.log", type=argparse.FileType('r'))
+    parser.add_argument('infile', help="F5 ltm file extract", default="ssl-orig.log", type=argparse.FileType('r'))
     parser.add_argument('-of', '--failfile', help="Failure File",
                         default=sys.stdout, type=argparse.FileType('w'))
     parser.add_argument('-oh', '--handshakefile', help="Handshake File",
