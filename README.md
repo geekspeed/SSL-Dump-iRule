@@ -53,7 +53,9 @@ To execute this script:
 This will process <infile> and create the files <failure file> <cipher file> <handshake file> <combined output file> 
 
 #### Example
-./ssl-dump-log-analyzer.py ssl-dump.log -of ssl-failure.csv -oc ssl-ciphers.csv -oh ssl-handshakes.csv -o ssl-combined.csv 
+>./ssl-dump-log-analyzer.py ssl-dump.log -of ssl-failure.csv -oc ssl-ciphers.csv -oh ssl-handshakes.csv -o ssl-combined.csv 
+
+Note: the openssl-ciphers.tsv file has to be in the same directory as the ssl-dump-log-anlayzer.py script or can be specified on line 29 of the ssl-dump-log-analyzer.py file.
 
 
 
