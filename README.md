@@ -47,7 +47,7 @@ This script takes the output of the SSL Dump iRule and formats it into 3 differe
 To execute this script:
 >./ssl-dump-log-analyzer.py --help: general help message
 >./ssl-dump-log-analyzer.py --version: version info
->./ssl-dump-log-analyzer.py <infile> -of <failure file> -oc <cipher file> -oh <handshake file> -o <combined output file>:
+>./ssl-dump-log-analyzer.py \<infile\> -of \<failure file\> -oc \<cipher file\> -oh \<handshake file\> -o \<combined output file\>:
 
 This will process infile and create the files __failure file__ __cipher file__ __handshake file__ __combined output file__ 
 
