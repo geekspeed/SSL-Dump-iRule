@@ -31,7 +31,9 @@ In this sense __failed__ means that the handshake violated one of the rules set 
 
 ### Extracting the log files
 The easiest way to get log data needed for analysis is to install the irule within a given virtual server, let it "bake" for some time to get the needed log entries. After which extract out the relevant log data:
+
 > cat /var/log/ltm | grep "Rule /Common/ssl-dump-HR" > /tmp/ssl-dump.log 
+
 This will place the file _ssl-dump.log_ in the /tmp directory of your F5. Pull down this fie to your analysis workstation. The "HR" iRule will need to be cleaned up with the included _ssl-dump-log-analyzer.py_ script.
 
 ### Generating CSV files for analysis
